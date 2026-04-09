@@ -71,6 +71,11 @@ def save_merged_output(
         all_markdown.append(result.markdown)
         all_html.append(result.html)
 
+        # Ensure page separation in merged output
+        if not paginate_output and page_num < len(results) - 1:
+            all_markdown.append("\n\n")
+            all_html.append("\n\n")
+
         # Accumulate metadata
         total_tokens += result.token_count
         total_chunks += len(result.chunks)
